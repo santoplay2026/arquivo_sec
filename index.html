@@ -268,8 +268,32 @@
     }
 
     .thumb{ display:block; aspect-ratio:16/10; border-radius:12px; overflow:hidden; border:1px solid var(--border); background:#fff; }
-    .thumb img{ width:100%; height:100%; object-fit:contain; padding:6px; display:block; transition:.3s; }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; transition:.3s; }
     .card:hover .thumb img{ transform:scale(1.04); }
+    .gallery-body{ padding:16px 20px 22px; display:flex; flex-direction:column; gap:12px; }
+    .photo-grid{ display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px; }
+    .photo{ aspect-ratio:1/1; padding:0; border:1px solid var(--border); border-radius:14px; overflow:hidden; background:rgba(0,0,0,0.22); cursor:zoom-in; transition:.2s; }
+    .photo img{ width:100%; height:100%; object-fit:cover; object-position:center 25%; display:block; }
+    .photo:hover, .photo:focus-visible{ border-color:var(--accent); transform:translateY(-2px); outline:none; box-shadow:0 14px 28px rgba(0,0,0,0.35); }
+    .panel + .panel{ margin-top:22px; }
+    .panel:target .panel-head{ border-bottom-color:var(--accent); }
+    html{ scroll-behavior:smooth; } .panel{ scroll-margin-top:16px; }
+
+    .lb{ position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(3,7,20,0.94); }
+    .lb.open{ display:flex; }
+    .lb-box{ position:relative; width:min(1000px,100%); height:min(86vh,820px); display:flex; align-items:center; justify-content:center; }
+    .lb img{ max-width:100%; max-height:100%; border-radius:14px; box-shadow:0 20px 80px rgba(0,0,0,.55); user-select:none; }
+    .lb-btn{ position:absolute; width:46px; height:46px; border-radius:50%; border:1px solid var(--border); background:var(--card); color:#fff; font-size:1.3rem; cursor:pointer; z-index:2; }
+    .lb-btn:hover, .lb-btn:focus-visible{ border-color:var(--accent); color:var(--accent); outline:none; }
+    .lb-close{ top:-14px; right:-6px; } .lb-prev{ left:6px; } .lb-next{ right:6px; }
+    .lb-cap{ position:absolute; left:0; right:0; bottom:-34px; text-align:center; font-size:.85rem; opacity:.85; }
+
+    @media (max-width: 860px){
+      .photo-grid{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+    }
+    @media (max-width: 480px){
+      .photo-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+    }
   </style>
 </head>
 <body>
@@ -281,6 +305,9 @@
       </div>
 
       <div class="pill-row">
+        <a class="pill" href="#nr12">
+          <span class="dot"></span> NR 12
+        </a>
         <a class="pill" href="https://wa.me/557391396879" target="_blank" rel="noopener">
           <span class="dot"></span> WhatsApp
         </a>
@@ -293,11 +320,12 @@
     <div class="panel">
       <div class="panel-head">
         <div class="title">Catálogos Técnicos (PDF)</div>
+        <div class="hint">10 documentos técnicos organizados por título e disponíveis na pasta /pdf.</div>
       </div>
 
       <div class="grid">
         <div class="card">
-          <a class="thumb" href="pdf/secador-vista-planta.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Secador — Vista e planta do equipamento"><img src="imagens/secador-vista-planta.jpg" alt="Secador — Vista e planta do equipamento" loading="lazy"></a>
+          <a class="thumb" href="pdf/secador-vista-planta.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Secador — Vista e planta do equipamento"><img src="previas/secador-vista-planta.jpg" alt="Prévia: Secador — Vista e planta do equipamento" loading="lazy"></a>
           <div class="tag"><span class="ic">PDF</span> Secador</div>
           <div class="name">Secador — Vista e planta do equipamento</div>
           <div class="desc">Desenho técnico com vistas do secador e layout do equipamento.</div>
@@ -308,7 +336,7 @@
         </div>
 
         <div class="card">
-          <a class="thumb" href="pdf/maquinas-agricolas-vistas-angulos.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Máquinas agrícolas — Vista em ângulos"><img src="imagens/maquinas-agricolas-vistas-angulos.jpg" alt="Máquinas agrícolas — Vista em ângulos" loading="lazy"></a>
+          <a class="thumb" href="pdf/maquinas-agricolas-vistas-angulos.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Máquinas agrícolas — Vista em ângulos"><img src="previas/maquinas-agricolas-vistas-angulos.jpg" alt="Prévia: Máquinas agrícolas — Vista em ângulos" loading="lazy"></a>
           <div class="tag"><span class="ic">PDF</span> Máquinas agrícolas</div>
           <div class="name">Máquinas agrícolas — Vista em ângulos</div>
           <div class="desc">Vista tridimensional do conjunto de máquinas e seus ângulos de instalação.</div>
@@ -319,7 +347,7 @@
         </div>
 
         <div class="card">
-          <a class="thumb" href="pdf/fundacao-secador-10000-litros.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Fundação do secador 10.000 litros"><img src="imagens/fundacao-secador-10000-litros.jpg" alt="Fundação do secador 10.000 litros" loading="lazy"></a>
+          <a class="thumb" href="pdf/fundacao-secador-10000-litros.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Fundação do secador 10.000 litros"><img src="previas/fundacao-secador-10000-litros.jpg" alt="Prévia: Fundação do secador 10.000 litros" loading="lazy"></a>
           <div class="tag"><span class="ic">PDF</span> Fundação</div>
           <div class="name">Fundação do secador 10.000 litros</div>
           <div class="desc">Prancha técnica com cotas e dimensões da fundação do secador de 10.000 litros.</div>
@@ -330,7 +358,7 @@
         </div>
 
         <div class="card">
-          <a class="thumb" href="pdf/equipamento-agricola-detalhamento-tecnico.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Detalhamento técnico"><img src="imagens/equipamento-agricola-detalhamento-tecnico.jpg" alt="Equipamento agrícola — Detalhamento técnico" loading="lazy"></a>
+          <a class="thumb" href="pdf/equipamento-agricola-detalhamento-tecnico.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Detalhamento técnico"><img src="previas/equipamento-agricola-detalhamento-tecnico.jpg" alt="Prévia: Equipamento agrícola — Detalhamento técnico" loading="lazy"></a>
           <div class="tag"><span class="ic">PDF</span> Detalhamento</div>
           <div class="name">Equipamento agrícola — Detalhamento técnico</div>
           <div class="desc">Planta, cortes e vista tridimensional detalhada do equipamento agrícola.</div>
@@ -341,7 +369,7 @@
         </div>
 
         <div class="card">
-          <a class="thumb" href="pdf/equipamento-agricola-planta-vistas.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Planta e vistas gerais"><img src="imagens/equipamento-agricola-planta-vistas.jpg" alt="Equipamento agrícola — Planta e vistas gerais" loading="lazy"></a>
+          <a class="thumb" href="pdf/equipamento-agricola-planta-vistas.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Planta e vistas gerais"><img src="previas/equipamento-agricola-planta-vistas.jpg" alt="Prévia: Equipamento agrícola — Planta e vistas gerais" loading="lazy"></a>
           <div class="tag"><span class="ic">PDF</span> Equipamento agrícola</div>
           <div class="name">Equipamento agrícola — Planta e vistas gerais</div>
           <div class="desc">Planta, elevação e vista tridimensional geral do conjunto agrícola.</div>
@@ -352,7 +380,7 @@
         </div>
 
         <div class="card">
-          <a class="thumb" href="pdf/equipamento-agricola-planta-tecnica.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Planta técnica"><img src="imagens/equipamento-agricola-planta-tecnica.jpg" alt="Equipamento agrícola — Planta técnica" loading="lazy"></a>
+          <a class="thumb" href="pdf/equipamento-agricola-planta-tecnica.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Planta técnica"><img src="previas/equipamento-agricola-planta-tecnica.jpg" alt="Prévia: Equipamento agrícola — Planta técnica" loading="lazy"></a>
           <div class="tag"><span class="ic">PDF</span> Equipamento agrícola</div>
           <div class="name">Equipamento agrícola — Planta técnica</div>
           <div class="desc">Prancha técnica com a planta do equipamento agrícola e sua distribuição geral.</div>
@@ -363,7 +391,7 @@
         </div>
 
         <div class="card">
-          <a class="thumb" href="pdf/equipamento-agricola-vista-isometrica-1.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Vista isométrica 1"><img src="imagens/equipamento-agricola-vista-isometrica-1.jpg" alt="Equipamento agrícola — Vista isométrica 1" loading="lazy"></a>
+          <a class="thumb" href="pdf/equipamento-agricola-vista-isometrica-1.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Vista isométrica 1"><img src="previas/equipamento-agricola-vista-isometrica-1.jpg" alt="Prévia: Equipamento agrícola — Vista isométrica 1" loading="lazy"></a>
           <div class="tag"><span class="ic">PDF</span> Equipamento agrícola</div>
           <div class="name">Equipamento agrícola — Vista isométrica 1</div>
           <div class="desc">Primeira vista isométrica do conjunto de equipamentos agrícolas.</div>
@@ -374,7 +402,7 @@
         </div>
 
         <div class="card">
-          <a class="thumb" href="pdf/equipamento-agricola-vista-isometrica-2.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Vista isométrica 2"><img src="imagens/equipamento-agricola-vista-isometrica-2.jpg" alt="Equipamento agrícola — Vista isométrica 2" loading="lazy"></a>
+          <a class="thumb" href="pdf/equipamento-agricola-vista-isometrica-2.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Vista isométrica 2"><img src="previas/equipamento-agricola-vista-isometrica-2.jpg" alt="Prévia: Equipamento agrícola — Vista isométrica 2" loading="lazy"></a>
           <div class="tag"><span class="ic">PDF</span> Equipamento agrícola</div>
           <div class="name">Equipamento agrícola — Vista isométrica 2</div>
           <div class="desc">Segunda vista isométrica do conjunto de equipamentos agrícolas.</div>
@@ -385,7 +413,7 @@
         </div>
 
         <div class="card">
-          <a class="thumb" href="pdf/equipamento-agricola-vista-isometrica-3.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Vista isométrica 3"><img src="imagens/equipamento-agricola-vista-isometrica-3.jpg" alt="Equipamento agrícola — Vista isométrica 3" loading="lazy"></a>
+          <a class="thumb" href="pdf/equipamento-agricola-vista-isometrica-3.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Vista isométrica 3"><img src="previas/equipamento-agricola-vista-isometrica-3.jpg" alt="Prévia: Equipamento agrícola — Vista isométrica 3" loading="lazy"></a>
           <div class="tag"><span class="ic">PDF</span> Equipamento agrícola</div>
           <div class="name">Equipamento agrícola — Vista isométrica 3</div>
           <div class="desc">Terceira vista isométrica do conjunto de equipamentos agrícolas.</div>
@@ -396,7 +424,7 @@
         </div>
 
         <div class="card">
-          <a class="thumb" href="pdf/equipamento-agricola-vista-superior.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Vista superior"><img src="imagens/equipamento-agricola-vista-superior.jpg" alt="Equipamento agrícola — Vista superior" loading="lazy"></a>
+          <a class="thumb" href="pdf/equipamento-agricola-vista-superior.pdf" target="_blank" rel="noopener" aria-label="Abrir PDF: Equipamento agrícola — Vista superior"><img src="previas/equipamento-agricola-vista-superior.jpg" alt="Prévia: Equipamento agrícola — Vista superior" loading="lazy"></a>
           <div class="tag"><span class="ic">PDF</span> Equipamento agrícola</div>
           <div class="name">Equipamento agrícola — Vista superior</div>
           <div class="desc">Vista superior do layout e da distribuição dos equipamentos agrícolas.</div>
@@ -405,7 +433,6 @@
             <a class="btn" href="pdf/equipamento-agricola-vista-superior.pdf" target="_blank" rel="noopener">Nova aba</a>
           </div>
         </div>
-
       </div>
 
       <div class="foot">
@@ -413,6 +440,120 @@
         <div>Suporte: +55 73 9139-6879</div>
       </div>
     </div>
+
+    <div class="panel" id="pericia">
+      <div class="panel-head">
+        <div class="title">Perícia + Palestra • Segurança do Trabalho</div>
+        <div class="hint">12 fotos • clique para ampliar</div>
+      </div>
+      <div class="gallery-body">
+        <div class="tag"><span class="ic">📷</span> Perícia + Palestra</div>
+        <div class="desc">Registros fotográficos de perícias, visitas técnicas, palestras e adequações NR 12.</div>
+        <div class="photo-grid">
+          <button class="photo" type="button" data-g="pericia" data-i="0" aria-label="Ampliar foto 1: Perícia técnica de segurança do trabalho"><img src="fotos/pericia/pericia-01.jpg" alt="Perícia técnica de segurança do trabalho" loading="lazy"></button>
+          <button class="photo" type="button" data-g="pericia" data-i="1" aria-label="Ampliar foto 2: Registro técnico NR 12"><img src="fotos/pericia/pericia-02.jpg" alt="Registro técnico NR 12" loading="lazy"></button>
+          <button class="photo" type="button" data-g="pericia" data-i="2" aria-label="Ampliar foto 3: Registro técnico NR 12"><img src="fotos/pericia/pericia-03.jpg" alt="Registro técnico NR 12" loading="lazy"></button>
+          <button class="photo" type="button" data-g="pericia" data-i="3" aria-label="Ampliar foto 4: Registro técnico NR 12"><img src="fotos/pericia/pericia-04.jpg" alt="Registro técnico NR 12" loading="lazy"></button>
+          <button class="photo" type="button" data-g="pericia" data-i="4" aria-label="Ampliar foto 5: Registro técnico NR 12"><img src="fotos/pericia/pericia-05.jpg" alt="Registro técnico NR 12" loading="lazy"></button>
+          <button class="photo" type="button" data-g="pericia" data-i="5" aria-label="Ampliar foto 6: Registro técnico NR 12"><img src="fotos/pericia/pericia-06.jpg" alt="Registro técnico NR 12" loading="lazy"></button>
+          <button class="photo" type="button" data-g="pericia" data-i="6" aria-label="Ampliar foto 7: Registro técnico NR 12"><img src="fotos/pericia/pericia-07.jpg" alt="Registro técnico NR 12" loading="lazy"></button>
+          <button class="photo" type="button" data-g="pericia" data-i="7" aria-label="Ampliar foto 8: Registro técnico NR 12"><img src="fotos/pericia/pericia-08.jpg" alt="Registro técnico NR 12" loading="lazy"></button>
+          <button class="photo" type="button" data-g="pericia" data-i="8" aria-label="Ampliar foto 9: Registro técnico NR 12"><img src="fotos/pericia/pericia-09.jpg" alt="Registro técnico NR 12" loading="lazy"></button>
+          <button class="photo" type="button" data-g="pericia" data-i="9" aria-label="Ampliar foto 10: Palestra sobre segurança do trabalho"><img src="fotos/pericia/pericia-10.jpg" alt="Palestra sobre segurança do trabalho" loading="lazy"></button>
+          <button class="photo" type="button" data-g="pericia" data-i="10" aria-label="Ampliar foto 11: Visita técnica de segurança do trabalho"><img src="fotos/pericia/pericia-11.jpg" alt="Visita técnica de segurança do trabalho" loading="lazy"></button>
+          <button class="photo" type="button" data-g="pericia" data-i="11" aria-label="Ampliar foto 12: Registro de atividade técnica"><img src="fotos/pericia/pericia-12.jpg" alt="Registro de atividade técnica" loading="lazy"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="bombeiros">
+      <div class="panel-head">
+        <div class="title">Corpo de Bombeiros • Combate a Incêndio (AVCB)</div>
+        <div class="hint">7 fotos • clique para ampliar</div>
+      </div>
+      <div class="gallery-body">
+        <div class="tag"><span class="ic">📷</span> Corpo de Bombeiros</div>
+        <div class="desc">Registros fotográficos de vistorias e adequações para combate a incêndio e AVCB.</div>
+        <div class="photo-grid">
+          <button class="photo" type="button" data-g="bombeiros" data-i="0" aria-label="Ampliar foto 1: Combate a incêndio • AVCB"><img src="fotos/bombeiros/bombeiros-01.jpg" alt="Combate a incêndio • AVCB" loading="lazy"></button>
+          <button class="photo" type="button" data-g="bombeiros" data-i="1" aria-label="Ampliar foto 2: Combate a incêndio • AVCB"><img src="fotos/bombeiros/bombeiros-02.jpg" alt="Combate a incêndio • AVCB" loading="lazy"></button>
+          <button class="photo" type="button" data-g="bombeiros" data-i="2" aria-label="Ampliar foto 3: Combate a incêndio • AVCB"><img src="fotos/bombeiros/bombeiros-03.jpg" alt="Combate a incêndio • AVCB" loading="lazy"></button>
+          <button class="photo" type="button" data-g="bombeiros" data-i="3" aria-label="Ampliar foto 4: Combate a incêndio • AVCB"><img src="fotos/bombeiros/bombeiros-04.jpg" alt="Combate a incêndio • AVCB" loading="lazy"></button>
+          <button class="photo" type="button" data-g="bombeiros" data-i="4" aria-label="Ampliar foto 5: Combate a incêndio • AVCB"><img src="fotos/bombeiros/bombeiros-05.jpg" alt="Combate a incêndio • AVCB" loading="lazy"></button>
+          <button class="photo" type="button" data-g="bombeiros" data-i="5" aria-label="Ampliar foto 6: Combate a incêndio • AVCB"><img src="fotos/bombeiros/bombeiros-06.jpg" alt="Combate a incêndio • AVCB" loading="lazy"></button>
+          <button class="photo" type="button" data-g="bombeiros" data-i="6" aria-label="Ampliar foto 7: Combate a incêndio • AVCB"><img src="fotos/bombeiros/bombeiros-07.jpg" alt="Combate a incêndio • AVCB" loading="lazy"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="nr12">
+      <div class="panel-head">
+        <div class="title">NR 12 • Segurança em Máquinas e Equipamentos</div>
+        <div class="hint">7 fotos • clique para ampliar</div>
+      </div>
+      <div class="gallery-body">
+        <div class="tag"><span class="ic">📷</span> NR 12</div>
+        <div class="desc">Registros fotográficos de inspeções, laudos e adequações de máquinas e equipamentos conforme a NR 12.</div>
+        <div class="photo-grid">
+          <button class="photo" type="button" data-g="nr12" data-i="0" aria-label="Ampliar foto 1: Adequação NR 12 — segurança em máquinas e equipamentos"><img src="fotos/nr12/nr12-01.jpg" alt="Adequação NR 12 — segurança em máquinas e equipamentos" loading="lazy"></button>
+          <button class="photo" type="button" data-g="nr12" data-i="1" aria-label="Ampliar foto 2: Adequação NR 12 — segurança em máquinas e equipamentos"><img src="fotos/nr12/nr12-02.jpg" alt="Adequação NR 12 — segurança em máquinas e equipamentos" loading="lazy"></button>
+          <button class="photo" type="button" data-g="nr12" data-i="2" aria-label="Ampliar foto 3: Adequação NR 12 — segurança em máquinas e equipamentos"><img src="fotos/nr12/nr12-03.jpg" alt="Adequação NR 12 — segurança em máquinas e equipamentos" loading="lazy"></button>
+          <button class="photo" type="button" data-g="nr12" data-i="3" aria-label="Ampliar foto 4: Adequação NR 12 — segurança em máquinas e equipamentos"><img src="fotos/nr12/nr12-04.jpg" alt="Adequação NR 12 — segurança em máquinas e equipamentos" loading="lazy"></button>
+          <button class="photo" type="button" data-g="nr12" data-i="4" aria-label="Ampliar foto 5: Adequação NR 12 — segurança em máquinas e equipamentos"><img src="fotos/nr12/nr12-05.jpg" alt="Adequação NR 12 — segurança em máquinas e equipamentos" loading="lazy"></button>
+          <button class="photo" type="button" data-g="nr12" data-i="5" aria-label="Ampliar foto 6: Adequação NR 12 — segurança em máquinas e equipamentos"><img src="fotos/nr12/nr12-06.jpg" alt="Adequação NR 12 — segurança em máquinas e equipamentos" loading="lazy"></button>
+          <button class="photo" type="button" data-g="nr12" data-i="6" aria-label="Ampliar foto 7: Adequação NR 12 — segurança em máquinas e equipamentos"><img src="fotos/nr12/nr12-07.jpg" alt="Adequação NR 12 — segurança em máquinas e equipamentos" loading="lazy"></button>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada" aria-hidden="true">
+    <div class="lb-box">
+      <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Fechar">&times;</button>
+      <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Foto anterior">&#10094;</button>
+      <img id="lbImg" src="" alt="">
+      <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Próxima foto">&#10095;</button>
+      <p class="lb-cap" id="lbCap"></p>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var lb=document.getElementById('lb'), img=document.getElementById('lbImg'), cap=document.getElementById('lbCap');
+      var list=[], cur=0, last=null;
+      function show(i){
+        cur=(i+list.length)%list.length;
+        var im=list[cur].querySelector('img');
+        img.src=im.src; img.alt=im.alt;
+        cap.textContent=im.alt+' ('+(cur+1)+'/'+list.length+')';
+      }
+      function open(g,i){
+        list=Array.prototype.slice.call(document.querySelectorAll('.photo[data-g="'+g+'"]'));
+        last=document.activeElement; show(i);
+        lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+        document.getElementById('lbClose').focus({preventScroll:true});
+      }
+      function close(){
+        lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow='';
+        if(last) last.focus({preventScroll:true});
+      }
+      document.querySelectorAll('.photo').forEach(function(b){
+        b.addEventListener('click',function(){ open(b.dataset.g, +b.dataset.i); });
+      });
+      document.getElementById('lbClose').addEventListener('click',close);
+      document.getElementById('lbPrev').addEventListener('click',function(){ show(cur-1); });
+      document.getElementById('lbNext').addEventListener('click',function(){ show(cur+1); });
+      lb.addEventListener('click',function(e){ if(e.target===lb || e.target.classList.contains('lb-box')) close(); });
+      document.addEventListener('keydown',function(e){
+        if(!lb.classList.contains('open')) return;
+        if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(cur-1); else if(e.key==='ArrowRight') show(cur+1);
+      });
+      var tx=null;
+      lb.addEventListener('touchstart',function(e){ tx=e.touches[0].clientX; },{passive:true});
+      lb.addEventListener('touchend',function(e){
+        if(tx===null) return; var dx=e.changedTouches[0].clientX-tx; tx=null;
+        if(Math.abs(dx)>50) show(cur+(dx<0?1:-1));
+      },{passive:true});
+    })();
+  </script>
 </body>
 </html>
